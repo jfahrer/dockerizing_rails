@@ -1,0 +1,16 @@
+FROM ruby:2.5.5-alpine3.9
+
+RUN apk add --update --no-cache \
+      bash \
+      build-base \
+      nodejs \
+      sqlite-dev \
+      tzdata \
+      postgresql-dev
+
+RUN gem update bundler
+
+WORKDIR /usr/src/app
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
