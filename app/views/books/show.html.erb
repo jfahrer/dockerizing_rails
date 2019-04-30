@@ -1,0 +1,45 @@
+<h1><%= @book.title %></h1>
+
+<p>
+  <strong>Pages:</strong>
+  <%= @book.pages %>
+</p>
+
+<p>
+  <strong>Progress:</strong>
+  <%= @book.progress.to_i %>%
+</p>
+
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>
+
+<h3>Activity log</h3>
+<% if @book.activities.any? %>
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Pages read</th>
+  </tr>
+  <% @book.activities.each do |activity| %>
+    <tr>
+      <td><%= activity.created_at %></td>
+      <td><%= activity.pages_read %></td>
+    </tr>
+  <% end %>
+</table>
+<% end %>
+
+<br>
+<%= form_with(model: Activity.new, local: true) do |form| %>
+  <%= form.hidden_field :book_id, value: @book.id %>
+  <div class="form-group">
+    <%= form.label :pages_read %>
+    <%= form.number_field :pages_read, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Log activity", class: "btn btn-primary" %>
+  </div>
+<% end %>
+

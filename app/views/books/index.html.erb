@@ -1,0 +1,46 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Pages</th>
+      <th>Progress</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.pages %></td>
+        <td><%= book.progress.to_i %>%</td>
+        <td><%= link_to 'Show', book %> | <%= link_to 'Edit', edit_book_path(book) %> | <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book', new_book_path, class: "btn btn-primary" %>
+
+
+<% if @books.any? %>
+  <br>
+  <hr>
+  <h3>Log progress</h3>
+
+  <%= form_with(model: Activity.new, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :book_id %>
+      <%= form.select :book_id, options_for_select(@books.pluck(:title, :id)), {}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :pages_read %>
+      <%= form.number_field :pages_read, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Log activity", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

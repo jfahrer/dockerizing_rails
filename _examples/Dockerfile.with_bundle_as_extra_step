@@ -1,4 +1,4 @@
-FROM ruby:2.5.5-alpine3.9
+FROM jfahrer/ruby:2.5.5-alpine3.9-railsconf
 
 RUN apk add --update --no-cache \
       bash \
@@ -14,3 +14,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+COPY . .
+
+CMD ["rails", "console"]

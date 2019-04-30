@@ -65,24 +65,43 @@ To save time and bandwidth throughout the workshop, I recommend that you downloa
 
 ```
 docker image pull ubuntu:18.04
-docker image pull ruby:2.5.5-alpine3.9
+docker image pull jfahrer/ruby:2.5.5-alpine3.9-railsconf
 docker image pull redis:4.0
 docker image pull postgres:10.6-alpine
-docker image pull jfahrer/ruby:2.5.5-alpine3.9-railsconf
 ```
 
 The output will look similar to this:
 ```
-2.5.5-alpine3.9: Pulling from library/ruby
+2.5.5-alpine3.9-railsconf: Pulling from jfahrer/ruby
 bdf0201b3a05: Pull complete
 67a4a175230f: Pull complete
 5b688ca58800: Pull complete
-68bfb7317906: Downloading [==========>                                        ]  4.668MB/23.3MB
 68bfb7317906: Pull complete
 e95e2e8e402a: Pull complete
-Digest: sha256:913a48f37398163b3f27b836d4db06fe867991ee3c871d26ed38fd51f6f646e0
-Status: Downloaded newer image for ruby:2.5.5-alpine3.9
+5e7827d9c7e8: Pull complete
+4507d0429dd7: Pull complete
+7cba2dc1349a: Pull complete
+61e576b94017: Pull complete
+951629f33eb5: Pull complete
+Digest: sha256:b1a4210e93b94e5a09a6e9c8f44c8f0a2aef03c520d6268faa20261c55d6d2b7
+Status: Downloaded newer image for jfahrer/ruby:2.5.5-alpine3.9-railsconf
 ```
 
 # Assignments
-Throughout the workshop we will complete various assignments. This section will contain a list with links to the individual assignments.
+Throughout the workshop you will complete the following assignments:
+
+* [Assignment 1 - Hello World](_assignments/assignment_01.md)
+* [Assignment 2 - Your first image](_assignments/assignment_02.md)
+* [Assignment 3 - Running Rails](_assignments/assignment_03.md)
+* [Assignment 4 - Talking to a service](_assignments/assignment_04.md)
+* [Assignment 5 - Integrating Postgres](_assignments/assignment_05.md)
+* [Assignment 6 - Utilizing layers](_assignments/assignment_06.md)
+* [Assignment 7 - Glueing things together](_assignments/assignment_07.md)
+* [Assignment 8 - Iterating](_assignments/assignment_08.md)
+* [Assignment 9 - Integrating Sidekiq](_assignments/assignment_09.md)
+
+
+# Learning more
+* https://LearnDocker.online
+* https://RailsWithDocker.com
+* https://docs.docker.com

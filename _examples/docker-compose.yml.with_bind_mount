@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  app:
+    image: your_docker_id/rails_app:v1
+    build:
+      context: .
+    command: ["rails", "server", "--pid=/tmp/server.pid"]
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - RAILS_ENV
+    ports:
+      - 3000:3000
+
+  pg:
+    image: postgres:10.6-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+volumes:
+  pg-data:

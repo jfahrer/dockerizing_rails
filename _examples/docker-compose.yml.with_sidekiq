@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  app:
+    image: your_docker_id/rails_app:v1
+    build:
+      context: .
+    command: ["rails", "server", "--pid=/tmp/server.pid"]
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
+      - RAILS_ENV
+    ports:
+      - 3000:3000
+
+  sidekiq:
+    image: your_docker_id/rails_app:v1
+    build:
+      context: .
+    command: ["sidekiq"]
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
+      - RAILS_ENV
+
+  redis:
+    image: redis:5.0
+
+  pg:
+    image: postgres:10.6-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+volumes:
+  pg-data:
