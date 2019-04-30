@@ -41,7 +41,7 @@ Server: Docker Engine - Community
 ```
 
 The important parts here are
-* `Version` for the `Client` and `Server` should be `18.09.2` or higher
+* `Version` for the `Client` and `Server` should be `18.09.0` or higher
   Please update your Docker installation if you are on an older version.
 * Under `Server: Docker Engine - Community` make sure that the  `OS/Arch` says `linux/amd64`.
   If you are seeing `Windows` in there, please make sure to switch you Docker installation to run Linux: https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
