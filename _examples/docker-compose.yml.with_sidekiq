@@ -20,8 +20,6 @@ services:
 
   sidekiq:
     image: your_docker_id/rails_app:v1
-    build:
-      context: .
     command: ["sidekiq"]
     volumes:
       - ./:/usr/src/app
@@ -34,7 +32,7 @@ services:
       - RAILS_ENV
 
   redis:
-    image: redis:5.0
+    image: redis:4.0
 
   pg:
     image: postgres:10.6-alpine
