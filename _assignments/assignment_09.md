@@ -7,7 +7,7 @@ All we have to do is:
 * Add a service to our `docker-compose.yml` to run Redis:
 ```
   redis:
-    image: redis:5.0
+    image: redis:4.0
 ```
 
 * Add a service to our `docker-compose.yml` to run Sidekiq:
