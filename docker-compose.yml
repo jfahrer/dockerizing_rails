@@ -7,7 +7,7 @@ services:
       context: .
     command: ["spring", "server"]
     volumes:
-      - ./:/usr/src/app
+      - app_src:/usr/src/app
       - ${HOME}/.irb-history:/root/.irb-history
       - ${HOME}/.irbrc:/root/.irbrc
       - gems:/usr/local/bundle
@@ -23,7 +23,7 @@ services:
     image: your_docker_id/rails_app:v1
     command: ["rails", "server", "--pid=/tmp/server.pid"]
     volumes:
-      - ./:/usr/src/app
+      - app_src:/usr/src/app
       - gems:/usr/local/bundle
     environment:
       - POSTGRES_HOST=pg
@@ -39,7 +39,7 @@ services:
     image: your_docker_id/rails_app:v1
     command: ["sidekiq"]
     volumes:
-      - ./:/usr/src/app
+      - app_src:/usr/src/app
       - gems:/usr/local/bundle
     environment:
       - POSTGRES_HOST=pg
@@ -60,6 +60,18 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
 
+  syncer:
+    image: ssync/ssync:0.2.2
+    command: watch
+    volumes:
+      - ./:/src:cached
+      - app_src:/dest
+      - sync_data:/unison_data
+    environment:
+      - UNISON_OPTS=-ignore "Path tags*" -ignore "Name {.*,*}.sw[pon]" -ignore "Path tmp/*" -ignore "Path .git" -ignore "Path log/*" -ignore "Path node_modules"
+
 volumes:
   pg-data:
   gems:
+  sync_data:
+  app_src:

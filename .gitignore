@@ -33,3 +33,4 @@
 /config/master.key
 
 _images/
+!.run_with_compose

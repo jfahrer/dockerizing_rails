@@ -6,7 +6,8 @@ RUN apk add --update --no-cache \
       nodejs \
       sqlite-dev \
       tzdata \
-      postgresql-dev
+      postgresql-dev \
+      postgresql
 
 RUN gem install bundler:2.0.1
 
@@ -19,4 +20,7 @@ COPY . .
 
 ENV PATH=./bin:$PATH
 
+EXPOSE 3000
+
+ENTRYPOINT ["bin/docker-entrypoint.sh"]
 CMD ["rails", "console"]
