@@ -1,0 +1,61 @@
+version: '3.7'
+
+services:
+  app:
+    image: your_docker_id/rails_app:v1
+    build:
+      context: .
+    command: ["spring", "server"]
+    volumes:
+      - ./:/usr/src/app
+      - ${HOME}/.irb-history:/root/.irb-history
+      - ${HOME}/.irbrc:/root/.irbrc
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
+      - RAILS_ENV
+
+  web:
+    image: your_docker_id/rails_app:v1
+    command: ["rails", "server", "--pid=/tmp/server.pid"]
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
+      - RAILS_ENV
+    ports:
+      - 3000:3000
+
+  sidekiq:
+    image: your_docker_id/rails_app:v1
+    command: ["sidekiq"]
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
+      - RAILS_ENV
+
+  redis:
+    image: redis:4.0
+
+  pg:
+    image: postgres:10.6-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+volumes:
+  pg-data:
