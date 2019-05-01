@@ -51,8 +51,8 @@ docker-compose up -d
 You can now use `docker-compose exec` to send arbitrary shell commands to a running Container of the `app` service:
 ```
 docker-compose exec app rspec
-docker-compose exec rake db:migrate
-docker-compose exec rails console
+docker-compose exec app rake db:migrate
+docker-compose exec app rails console
 ```
 
 Instead of spinning up a brand new container for every command, we utilize and already existing container that runs Spring!
