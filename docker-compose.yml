@@ -5,7 +5,9 @@ services:
     image: your_docker_id/rails_app:v1
     build:
       context: .
-    command: ["rails", "server"]
+    command: ["rails", "server", "--pid=/tmp/server.pid"]
+    volumes:
+      - ./:/usr/src/app
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
