@@ -12,8 +12,9 @@ RUN gem install bundler:2.0.1
 
 WORKDIR /usr/src/app
 
-COPY . .
-
+COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+COPY . .
 
 CMD ["rails", "console"]
