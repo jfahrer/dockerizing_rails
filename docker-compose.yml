@@ -8,6 +8,8 @@ services:
     command: ["spring", "server"]
     volumes:
       - ./:/usr/src/app
+      - ${HOME}/.irb-history:/root/.irb-history
+      - ${HOME}/.irbrc:/root/.irbrc
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
