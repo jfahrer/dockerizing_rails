@@ -105,3 +105,6 @@ Throughout the workshop you will complete the following assignments:
 * https://LearnDocker.online
 * https://RailsWithDocker.com
 * https://docs.docker.com
+
+# Contributions
+Special thanks to [@hjhart](https://github.com/hjhart) and [@palexvs](https://github.com/palexvs) for all there help with this workshop.
