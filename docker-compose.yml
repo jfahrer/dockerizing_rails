@@ -10,6 +10,7 @@ services:
       - ./:/usr/src/app
       - ${HOME}/.irb-history:/root/.irb-history
       - ${HOME}/.irbrc:/root/.irbrc
+      - gems:/usr/local/bundle
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
@@ -23,6 +24,7 @@ services:
     command: ["rails", "server", "--pid=/tmp/server.pid"]
     volumes:
       - ./:/usr/src/app
+      - gems:/usr/local/bundle
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
@@ -38,6 +40,7 @@ services:
     command: ["sidekiq"]
     volumes:
       - ./:/usr/src/app
+      - gems:/usr/local/bundle
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
@@ -59,3 +62,4 @@ services:
 
 volumes:
   pg-data:
+  gems:
