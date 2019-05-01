@@ -6,3 +6,5 @@
 _images/
 _workshop/
 _assignments/
+Dockerfile
+docker-compose.yml
