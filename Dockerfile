@@ -17,4 +17,6 @@ RUN bundle install
 
 COPY . .
 
+ENV PATH=./bin:$PATH
+
 CMD ["rails", "console"]
