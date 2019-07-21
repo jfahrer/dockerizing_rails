@@ -3,13 +3,13 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    allowed_filters = ['active', 'completed']
+    allowed_filters = ["active", "completed"]
     filter = current_filter
 
-    if allowed_filters.include?(filter)
-      @todos = Todo.public_send(filter)
+    @todos = if allowed_filters.include?(filter)
+      Todo.public_send(filter)
     else
-      @todos = Todo.where(archived_at: nil)
+      Todo.where(archived_at: nil)
     end
   end
 
@@ -17,7 +17,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(create_params)
     if @todo.save
-      Activity.create(name: 'todo_created', data: { id: @todo.id, title: @todo.title })
+      Activity.create(name: "todo_created", data: {id: @todo.id, title: @todo.title})
     end
 
     redirect_to todos_path(filter: current_filter)
@@ -26,8 +26,8 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   def update
     if @todo.update(update_params) && @todo.completed_changed?
-      activity_name = @todo.completed ? 'todo_marked_as_complete' : 'todo_marked_as_active'
-      Activity.create(name: activity_name, data: { id: @todo.id, title: @todo.title })
+      activity_name = @todo.completed ? "todo_marked_as_complete" : "todo_marked_as_active"
+      Activity.create(name: activity_name, data: {id: @todo.id, title: @todo.title})
     end
 
     redirect_to todos_path(filter: current_filter)
@@ -36,30 +36,31 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   def destroy
     if @todo.destroy
-      Activity.create(name: 'todo_deleted', data: { id: @todo.id, title: @todo.title })
+      Activity.create(name: "todo_deleted", data: {id: @todo.id, title: @todo.title})
     end
 
     redirect_to todos_url(filter: current_filter)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_todo
-      @todo = Todo.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def create_params
-      params.require(:todo).permit(:title)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_todo
+    @todo = Todo.find(params[:id])
+  end
 
-    def update_params
-      params.require(:todo).permit(:completed)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def create_params
+    params.require(:todo).permit(:title)
+  end
 
-    def current_filter
-      params[:filter]
-    end
+  def update_params
+    params.require(:todo).permit(:completed)
+  end
 
-    helper_method :current_filter
+  def current_filter
+    params[:filter]
+  end
+
+  helper_method :current_filter
 end
