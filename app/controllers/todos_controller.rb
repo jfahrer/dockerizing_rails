@@ -3,7 +3,14 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = Todo.all
+    allowed_filters = ['all', 'active', 'completed']
+    filter = params[:filter]
+
+    if allowed_filters.include?(filter)
+      @todos = Todo.public_send(filter)
+    else
+      @todos = Todo.all
+    end
   end
 
   # POST /todos

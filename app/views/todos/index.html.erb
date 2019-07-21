@@ -2,6 +2,14 @@
 
 <h1>Todos</h1>
 
+Filter: [
+<% ['all', 'active', 'completed'].each do |filter_name| %>
+  <%= link_to filter_name, todos_path(filter: filter_name) %> |
+<% end %>
+]
+
+<br>
+
 <table>
   <thead>
     <tr>
@@ -22,6 +30,8 @@
     <% end %>
   </tbody>
 </table>
+
+<br>
 
 <%= render 'form', todo: Todo.new %>
 
