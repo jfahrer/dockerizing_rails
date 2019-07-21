@@ -15,21 +15,30 @@ class TodosController < ApplicationController
 
   # POST /todos
   def create
-    @todo = Todo.new(todo_params)
+    @todo = Todo.new(create_params)
+    if @todo.save
+      Activity.create(name: 'todo_created', data: { id: @todo.id, title: @todo.title })
+    end
 
-    @todo.save
     redirect_to todos_path(filter: current_filter)
   end
 
   # PATCH/PUT /todos/1
   def update
-    @todo.update(todo_params)
+    if @todo.update(update_params) && @todo.completed_changed?
+      activity_name = @todo.completed ? 'todo_marked_as_complete' : 'todo_marked_as_active'
+      Activity.create(name: activity_name, data: { id: @todo.id, title: @todo.title })
+    end
+
     redirect_to todos_path(filter: current_filter)
   end
 
   # DELETE /todos/1
   def destroy
-    @todo.destroy
+    if @todo.destroy
+      Activity.create(name: 'todo_deleted', data: { id: @todo.id, title: @todo.title })
+    end
+
     redirect_to todos_url(filter: current_filter)
   end
 
@@ -40,8 +49,12 @@ class TodosController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def todo_params
-      params.require(:todo).permit(:title, :completed)
+    def create_params
+      params.require(:todo).permit(:title)
+    end
+
+    def update_params
+      params.require(:todo).permit(:completed)
     end
 
     def current_filter

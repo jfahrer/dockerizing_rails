@@ -67,19 +67,34 @@ RSpec.describe "Todos", type: :request do
         }.to change(Todo, :count).by(1)
         expect(response).to redirect_to(todos_path)
       end
+
+      it "creates an entry in the activity log" do
+        expect {
+          post todos_path, params: { todo: valid_attributes }
+        }.to change(Activity, :count).by(1)
+      end
     end
 
     context "with invalid params" do
       it "redirects to the todo list" do
         post todos_path, params: { todo: invalid_attributes }
+
         expect(response).to redirect_to(todos_path)
+      end
+
+      it "does not create an acitivity log entry" do
+        expect {
+          post todos_path, params: { todo: invalid_attributes }
+        }.to_not change { Activity.count }
       end
     end
 
     context "with a filter set" do
       it "keeps the filter when redirecting" do
         todo = Todo.create! valid_attributes
+
         post todos_path, params: { filter: "active", todo: valid_attributes }
+
         expect(response).to redirect_to(todos_path(filter: "active"))
       end
     end
@@ -94,25 +109,47 @@ RSpec.describe "Todos", type: :request do
       it "updates the requested todo" do
         todo = Todo.create! valid_attributes
         expect(todo.completed).to be_falsy
+
         patch todo_path(todo), params: { id: todo.to_param, todo: new_attributes }
-        expect(response).to redirect_to(todos_path)
         todo.reload
+
+        expect(response).to redirect_to(todos_path)
         expect(todo.completed).to be_truthy
+      end
+
+      it "creates an entry in the activity log" do
+        todo = Todo.create! valid_attributes
+
+        expect {
+          patch todo_path(todo), params: { id: todo.to_param, todo: new_attributes }
+        }.to change(Activity, :count).by(1)
       end
     end
 
     context "with invalid params" do
       it "redirects to the todos" do
         todo = Todo.create! valid_attributes
+
         patch todo_path(todo), params: { id: todo.to_param, todo: invalid_attributes }
         expect(response).to redirect_to(todos_path)
+
+      end
+
+      it "does not create an acitivity log entry" do
+        todo = Todo.create! valid_attributes
+
+        expect {
+          patch todo_path(todo), params: { id: todo.to_param, todo: invalid_attributes }
+        }.to_not change { Activity.count }
       end
     end
 
     context "with a filter set" do
       it "keeps the filter when redirecting" do
         todo = Todo.create! valid_attributes
+
         patch todo_path(todo), params: { filter: "active", id: todo.to_param, todo: invalid_attributes }
+
         expect(response).to redirect_to(todos_path(filter: "active"))
       end
     end
@@ -121,16 +158,27 @@ RSpec.describe "Todos", type: :request do
   describe "DELETE /todos/:id" do
     it "destroys the requested todo" do
       todo = Todo.create! valid_attributes
+
       expect {
         delete todo_path(todo), params: { id: todo.to_param }
       }.to change(Todo, :count).by(-1)
       expect(response).to redirect_to(todos_path)
     end
 
+    it "creates an entry in the activity log" do
+      todo = Todo.create! valid_attributes
+
+      expect {
+        delete todo_path(todo), params: { id: todo.to_param }
+      }.to change(Activity, :count).by(1)
+    end
+
     context "with a filter set" do
       it "keeps the filter when redirecting" do
         todo = Todo.create! valid_attributes
+
         delete todo_path(todo), params: { filter: "active", id: todo.to_param }
+
         expect(response).to redirect_to(todos_path(filter: "active"))
       end
     end
