@@ -1,0 +1,24 @@
+<h1>Activities</h1>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>What</th>
+      <th>When</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= render activity.name, data: activity.data %></td>
+        <td><%= activity.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
