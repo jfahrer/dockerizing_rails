@@ -1,20 +1,42 @@
-<h1>Activities</h1>
+<h1>Activity</h1>
 
-<br>
-
+<% if @scores.any? %>
+<h3>Your scores</h3>
 <table>
   <thead>
     <tr>
-      <th>What</th>
+      <th>Date</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scores.each do |score| %>
+      <tr>
+        <td><%= score.date %></td>
+        <td><%= score.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<h3>Logs</h3>
+<table>
+  <thead>
+    <tr>
       <th>When</th>
+      <th>What</th>
     </tr>
   </thead>
 
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
-        <td><%= render activity.name, data: activity.data %></td>
         <td><%= activity.created_at %></td>
+        <td><%= render activity.name, data: activity.data %></td>
       </tr>
     <% end %>
   </tbody>
