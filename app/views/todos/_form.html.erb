@@ -1,4 +1,6 @@
 <%= form_with(model: todo, local: true) do |form| %>
+  <%= hidden_field_tag :filter, current_filter %>
+
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>

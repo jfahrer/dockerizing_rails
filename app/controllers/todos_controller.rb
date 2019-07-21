@@ -4,7 +4,7 @@ class TodosController < ApplicationController
   # GET /todos
   def index
     allowed_filters = ['all', 'active', 'completed']
-    filter = params[:filter]
+    filter = current_filter
 
     if allowed_filters.include?(filter)
       @todos = Todo.public_send(filter)
@@ -18,19 +18,19 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     @todo.save
-    redirect_to todos_path
+    redirect_to todos_path(filter: current_filter)
   end
 
   # PATCH/PUT /todos/1
   def update
     @todo.update(todo_params)
-    redirect_to todos_path
+    redirect_to todos_path(filter: current_filter)
   end
 
   # DELETE /todos/1
   def destroy
     @todo.destroy
-    redirect_to todos_url
+    redirect_to todos_url(filter: current_filter)
   end
 
   private
@@ -43,4 +43,10 @@ class TodosController < ApplicationController
     def todo_params
       params.require(:todo).permit(:title, :completed)
     end
+
+    def current_filter
+      params[:filter]
+    end
+
+    helper_method :current_filter
 end
