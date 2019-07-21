@@ -1,6 +1,6 @@
 class Todo < ApplicationRecord
-  scope :completed, -> { where(completed: true) }
-  scope :active, -> { where(completed: false) }
+  scope :completed, -> { where(archived_at: nil, completed: true) }
+  scope :active, -> { where(archived_at: nil, completed: false) }
 
   validates :title, presence: true
 

@@ -3,13 +3,13 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    allowed_filters = ['all', 'active', 'completed']
+    allowed_filters = ['active', 'completed']
     filter = current_filter
 
     if allowed_filters.include?(filter)
       @todos = Todo.public_send(filter)
     else
-      @todos = Todo.all
+      @todos = Todo.where(archived_at: nil)
     end
   end
 

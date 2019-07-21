@@ -36,3 +36,5 @@ Filter: [
 <%= render 'form', todo: Todo.new %>
 
 <br>
+
+<%= link_to 'Archive completed todos', archived_todos_path(filter: current_filter), method: :post, data: { confirm: 'Are you sure?' } %>
