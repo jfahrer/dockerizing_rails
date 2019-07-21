@@ -41,7 +41,7 @@ docker container run -it your_docker_id/rails_app:v1
 
 Feel free to play around with the Rails environment for a bit. You should for example be able to create some records in the database:
 ```
-Book.create!(title: "Rails With Docker", pages: 312)
+Todo.create!(title: "laundry")
 ```
 
 Press `Ctrl-D` to quit the rails console and terminate the container.
