@@ -12,9 +12,11 @@ RUN gem install bundler:2.0.2
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
+
+COPY . .
 
 EXPOSE 3000
 
