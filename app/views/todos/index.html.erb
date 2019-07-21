@@ -16,7 +16,8 @@
       <tr>
         <td><%= todo.title %></td>
         <td><%= todo.completed %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Mark #{ todo.completed ? 'incomplete' : 'complete'}", todo_path(todo, todo: { completed: !todo.completed }), method: :patch %></td>
+        <td><%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
