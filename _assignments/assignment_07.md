@@ -62,6 +62,19 @@ docker-compose down
 
 This will delete the container, but keep the volumes intact. Use the `-v` flag if you also want to delete the volumes defined in the `docker-compose.yml`.
 
+## Building images
+Docker Compose also enables us to build our images with a single command:
+```
+docker-compose build
+```
+
+Docker Compose will build the image for the service `app` because we specified the `build` directive. It automatically tags the image with the name specified by the `image` directive.
+
+We can combine building the image with the `up` command as well:
+```
+docker-compose up -d --build
+```
+
 ### Bonus
 What will happen if you just run the following command:
 ```

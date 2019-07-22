@@ -56,7 +56,7 @@ If you open your browser and go to http://localhost:3000, you will see that we n
 ```
 docker container run -it --link pg \
   -e POSTGRES_HOST=pg -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret \
-  your_docker_id/rails_app:v1 rake db:create db:migrate db:test:prepare
+  your_docker_id/rails_app:v1 rake db:create db:migrate
 ```
 
 With the database schema in place you should be able to to interact with our application through the web interface.
