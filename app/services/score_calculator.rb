@@ -7,9 +7,9 @@ class ScoreCalculator
   }
 
   def self.call(date)
-    total_points = POINTS.sum do |activity_name, points|
+    total_points = POINTS.sum { |activity_name, points|
       Activity.where(created_at: [date.beginning_of_day..date.end_of_day], name: activity_name).count * points
-    end
+    }
 
     score = Score.find_or_initialize_by(date: date)
     score.points = total_points
