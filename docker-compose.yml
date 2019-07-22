@@ -10,6 +10,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
       - RAILS_ENV
+    volumes:
+      - ./:/usr/src/app:cached
+      - tmp:/usr/src/app/tmp
     ports:
       - 127.0.0.1:3000:3000
 
@@ -23,3 +26,4 @@ services:
 
 volumes:
   pg-data:
+  tmp:
