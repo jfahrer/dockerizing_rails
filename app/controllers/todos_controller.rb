@@ -19,7 +19,7 @@ class TodosController < ApplicationController
 
   # PATCH/PUT /todos/1
   def update
-    if @todo.update(update_params) && @todo.completed_changed?
+    if @todo.update(update_params) && @todo.completed_previously_changed?
       activity_name = @todo.completed ? "todo_marked_as_complete" : "todo_marked_as_active"
       Activity.create(name: activity_name, data: {id: @todo.id, title: @todo.title})
     end
