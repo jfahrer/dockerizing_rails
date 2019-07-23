@@ -13,6 +13,7 @@ services:
     volumes:
       - ./:/usr/src/app:cached
       - tmp:/usr/src/app/tmp
+      - gems:/usr/local/bundle
     ports:
       - 127.0.0.1:3000:3000
     tty: true
@@ -29,3 +30,4 @@ services:
 volumes:
   pg-data:
   tmp:
+  gems:
