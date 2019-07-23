@@ -1,5 +1,6 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:update, :destroy]
+  after_action :update_scores, only: [:create, :update, :destroy]
 
   # GET /todos
   def index
@@ -56,6 +57,10 @@ class TodosController < ApplicationController
 
   def update_params
     params.require(:todo).permit(:completed)
+  end
+
+  def update_scores
+    ScoreCalculator.call(Date.today)
   end
 
   def current_filter

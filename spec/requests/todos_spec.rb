@@ -71,7 +71,7 @@ RSpec.describe "Todos", type: :request do
       it "creates an entry in the activity log" do
         expect {
           post todos_path, params: {todo: valid_attributes}
-        }.to change(Activity, :count).by(1)
+        }.to change(Activity, :count).by(1).and change(Score, :count).by(1)
       end
     end
 
@@ -122,7 +122,7 @@ RSpec.describe "Todos", type: :request do
 
         expect {
           patch todo_path(todo), params: {id: todo.to_param, todo: new_attributes}
-        }.to change(Activity, :count).by(1)
+        }.to change(Activity, :count).by(1).and change(Score, :count).by(1)
       end
     end
 
@@ -169,7 +169,7 @@ RSpec.describe "Todos", type: :request do
 
       expect {
         delete todo_path(todo), params: {id: todo.to_param}
-      }.to change(Activity, :count).by(1)
+      }.to change(Activity, :count).by(1).and change(Score, :count).by(1)
     end
 
     context "with a filter set" do
