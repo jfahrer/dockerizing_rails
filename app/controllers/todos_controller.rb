@@ -56,7 +56,7 @@ class TodosController < ApplicationController
   end
 
   def update_scores
-    ScoreCalculator.call(Date.today)
+    ScoreGenerationJob.perform_async(Date.today)
   end
 
   def current_filter
