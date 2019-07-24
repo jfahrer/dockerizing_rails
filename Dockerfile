@@ -6,7 +6,8 @@ RUN apk add --update --no-cache \
       nodejs \
       sqlite-dev \
       tzdata \
-      postgresql-dev
+      postgresql-dev \
+      yarn
 
 RUN gem install bundler:2.0.2
 
@@ -15,6 +16,10 @@ WORKDIR /usr/src/app
 COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
 
 COPY . .
 

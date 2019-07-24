@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   app:
@@ -15,6 +15,7 @@ services:
       - ./:/usr/src/app:cached
       - tmp:/usr/src/app/tmp
       - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
     ports:
       - 127.0.0.1:3000:3000
     tty: true
@@ -27,6 +28,7 @@ services:
       - ./:/usr/src/app
       - tmp:/usr/src/app/tmp
       - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
@@ -54,3 +56,4 @@ volumes:
   redis-data:
   tmp:
   gems:
+  node_modules:
