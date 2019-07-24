@@ -1,5 +1,6 @@
 /log/*
 /tmp/*
+/script
 /node_modules
 /.bundle
 /public/assets

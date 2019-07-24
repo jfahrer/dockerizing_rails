@@ -1,0 +1,11 @@
+#!/bin/bash
+cd "$(dirname "$0")/.."
+
+set -ex
+
+if [ -z "${FAST}" ]; then
+  script/update
+fi
+
+docker-compose up -d
+docker-compose logs -f --tail 50 web sidekiq

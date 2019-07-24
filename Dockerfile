@@ -7,6 +7,7 @@ RUN apk add --update --no-cache \
       sqlite-dev \
       tzdata \
       postgresql-dev \
+      postgresql-client \
       yarn
 
 RUN gem install bundler:2.0.2

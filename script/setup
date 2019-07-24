@@ -1,0 +1,17 @@
+#!/bin/bash
+cd "$(dirname "$0")/.."
+
+set -ex
+
+docker-compose down -v
+
+docker-compose build app
+
+docker-compose up -d pg
+
+docker-compose run --rm app bin/wait-for-postgres
+docker-compose run --rm app bin/rake db:create
+
+SKIP_BUILD=1 script/update
+
+docker-compose run --rm app bin/rake db:seed

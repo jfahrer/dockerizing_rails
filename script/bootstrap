@@ -1,0 +1,11 @@
+#!/bin/bash
+cd "$(dirname "$0")/.."
+
+set -ex
+
+if [ -z "${SKIP_BUILD}" ]; then
+  docker-compose build --pull
+fi
+
+docker-compose run --rm app bin/bundle
+docker-compose run --rm app yarn
