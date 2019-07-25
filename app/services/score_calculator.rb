@@ -11,9 +11,9 @@ class ScoreCalculator
       Activity.where(created_at: [date.beginning_of_day..date.end_of_day], name: activity_name).count * points
     }
 
-    score = Score.find_or_create_by(date: date) do |score|
+    score = Score.find_or_create_by(date: date) { |score|
       score.points = 0
-    end
+    }
     score.update!(points: total_points)
   end
 end
