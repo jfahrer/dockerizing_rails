@@ -1,12 +1,11 @@
-<%= form_with(model: todo, local: true) do |form| %>
+<%= form_with(model: todo, local: true, class: "form") do |form| %>
   <%= hidden_field_tag :filter, current_filter %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.text_field :title, class: "form-control", placeholder: "What needs do be done?" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group actions">
+    <%= form.submit "Add", class: "btn btn-primary" %>
   </div>
 <% end %>

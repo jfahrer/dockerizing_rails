@@ -1,46 +1,51 @@
-<h1>Activity</h1>
+<br><br>
 
-<% if @scores.any? %>
-<h3>Your scores</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Points</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-md-6">
+    <% if @scores.any? %>
+      <h4>Your scores</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Points</th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @scores.each do |score| %>
-      <tr>
-        <td><%= score.date %></td>
-        <td><%= score.points %></td>
-      </tr>
+        <tbody>
+          <% @scores.each do |score| %>
+            <tr>
+              <td><%= score.date %></td>
+              <td><%= score.points %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% end %>
-  </tbody>
-</table>
-<% end %>
+  </div>
+</div>
 
-<br>
+<br><br>
 
-<h3>Logs</h3>
-<table>
-  <thead>
-    <tr>
-      <th>When</th>
-      <th>What</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Logs</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>What</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
-        <td><%= activity.created_at %></td>
-        <td><%= render activity.name, data: activity.data %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+      <tbody>
+        <% @activities.each do |activity| %>
+          <tr>
+            <td><%= activity.created_at %></td>
+            <td><%= render activity.name, data: activity.data %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

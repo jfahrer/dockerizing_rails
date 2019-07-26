@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Dockerizing Rails</title>
     <%= csrf_meta_tags %>
@@ -7,9 +7,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="turbolinks-cache-control" content="no-preview">
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dockerizing Rails</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link <%= params[:controller] == "todos" ? "active" : "" %>" href="<%= todos_path %>">Todos</span></a>
+            <a class="nav-item nav-link <%= params[:controller] == "activities" ? "active" : "" %>" href="<%= activities_path %>">Activities</a>
+          </div>
+        </div>
+      </nav>
+
+      <%= yield %>
+
+    </div>
   </body>
 </html>

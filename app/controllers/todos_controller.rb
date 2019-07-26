@@ -4,14 +4,7 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    allowed_filters = ["active", "completed"]
-    filter = current_filter
-
-    @todos = if allowed_filters.include?(filter)
-      Todo.public_send(filter)
-    else
-      Todo.where(archived_at: nil)
-    end
+    @todos = Todo.public_send(current_filter).ordered
   end
 
   # POST /todos
@@ -31,7 +24,10 @@ class TodosController < ApplicationController
       Activity.create(name: activity_name, data: {id: @todo.id, title: @todo.title})
     end
 
-    redirect_to todos_path(filter: current_filter)
+    respond_to do |format|
+      format.html { redirect_to todos_path(filter: current_filter) }
+      format.js
+    end
   end
 
   # DELETE /todos/1
@@ -64,8 +60,13 @@ class TodosController < ApplicationController
   end
 
   def current_filter
-    params[:filter]
+    @filter ||= begin
+                  filter = params[:filter]
+                  allowed_filters = ["all_todos", "active", "completed"]
+                  allowed_filters.include?(filter) ? filter : allowed_filters.first
+                end
   end
 
   helper_method :current_filter
+
 end

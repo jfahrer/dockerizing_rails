@@ -1,40 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-6">
+    <br><br>
 
-<h1>Todos</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th colspan="3">
+            <ul class="nav nav-pills">
+              <% ["all_todos", "active", "completed"].each do |filter| %>
+                <li class="nav-item">
+                  <%= link_to filter_names[filter], todos_path(filter: filter), class: "nav-link #{current_filter == filter ? "active" : ""}" %>
+                </li>
+              <% end %>
+            </ul>
+          </th>
+        </tr>
+      </thead>
 
-Filter: [
-<% ['all', 'active', 'completed'].each do |filter_name| %>
-  <%= link_to filter_name, todos_path(filter: filter_name) %> |
-<% end %>
-]
+      <tbody>
+        <% @todos.each do |todo| %>
+          <tr>
+            <td class="todo-checkbox"> <%= check_box_tag dom_id(todo, :checkbox), nil, todo.completed?, data: { url: todo_path(todo, filter: current_filter, todo: { completed: !todo.completed }), remote: :true, method: :patch } %> </td>
+            <td> <%= todo.title %> </td>
+            <td class="text-right"><%= link_to 'Delete', todo_path(todo, filter: current_filter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<br>
+  <div class="col-md-4 offset-md-2">
+    <br><br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Completed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <%= render 'form', todo: Todo.new %>
 
-  <tbody>
-    <% @todos.each do |todo| %>
-      <tr>
-        <td><%= todo.title %></td>
-        <td><%= todo.completed %></td>
-        <td><%= link_to "Mark #{ todo.completed ? 'incomplete' : 'complete'}", todo_path(todo, filter: current_filter, todo: { completed: !todo.completed }), method: :patch %></td>
-        <td><%= link_to 'Delete', todo_path(todo, filter: current_filter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <br><br>
 
-<br>
+    <%= link_to 'Archive completed todos', archived_todos_path(filter: current_filter), method: :post, data: { confirm: 'Are you sure?' } %>
 
-<%= render 'form', todo: Todo.new %>
+  </div>
+</div>
 
-<br>
-
-<%= link_to 'Archive completed todos', archived_todos_path(filter: current_filter), method: :post, data: { confirm: 'Are you sure?' } %>
