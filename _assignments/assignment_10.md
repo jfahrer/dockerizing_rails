@@ -79,13 +79,27 @@ require 'sidekiq/testing'
 Sidekiq::Testing.inline!
 ```
 
+You can copy and paste those lines right bellow the `# Add additional requires below this line. Rails is not loaded until this point!` comment in `spec/rails_helper.rb`.
+
 ## Adding the service
 Thanks to Docker and Compose, adding additional services to our Rails application becomes a breeze. All we have to do is:
 * Add a service to our `docker-compose.yml` to run Redis:
   ```yaml
     redis:
       image: redis:5.0
+      volumes:
+        - redis-data:/data
   ```
+
+* Add the `redis-data` volume to the volumes section:
+  ```yaml
+  volumes:
+    pg-data:
+    redis-data:
+    tmp:
+    gems:
+  ```
+  Redis will persist its data to `/data` when the service is stopped and read the backup on startup to restore it. By mounting a volume to `/data` we ensure that we keep the data around even when the container is deleted.
 
 * Add a service to our `docker-compose.yml` to run Sidekiq:
   ```yaml
@@ -151,5 +165,9 @@ docker-compose logs -f sidekiq
 ```
 
 Add some todos and mark them as complete. You should see that jobs are being processed in the Sidekiq logs.
+
+
+# What changed
+You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/sidekiq) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/debugging...sidekiq) to the previous branch to see what changed.
 
 [Back to the overview](../README.md#assignments)

@@ -1,4 +1,4 @@
-# Assignment 12 - Integrating Spring
+# Assignment 12 - Keeping things running with Spring
 
 Utilizing the power of Spring and pre-loading your application also works in Dockerland. Just like we did with Sidekiq, we will add another service to separate the concerns of our containers. We will run one service for Rails Server and another one for Spring. I tend to use the service name `app` for and `web` for the Rails Server:
 

@@ -106,4 +106,7 @@ Things are going wrong? Let's make them work! Here are a couple of things to try
   docker volume ls | xargs docker volume rm
   ```
 
+# What changed
+You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/integrating_postgres) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/rails_server...integrating_postgres) to the previous branch to see what changed.
+
 [Back to the overview](../README.md#assignments)

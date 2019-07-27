@@ -110,3 +110,8 @@ As an excercise for the reader, let's extract the bin/webpack-dev-server process
 We can generate those assets as soon as the javascript is saved, as long as we get smart about how we watch it.
 
 Let's modify the `docker-compose.yml` script to run the `bin/webpack-dev-server` so it will quickly regenerate files.
+
+# What changed
+You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/webpacker) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/sidekiq...webpacker) to the previous branch to see what changed.
+
+[Back to the overview](../README.md#assignments)

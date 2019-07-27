@@ -76,4 +76,8 @@ You are already running something on port 3000. Either stop the service that is 
 docker container run -it -p 3001:3000 your_docker_id/rails_app:v1 rails s -b 0.0.0.0
 ```
 
+
+# What changed
+You can find our changes in the [`rails_server`](https://github.com/jfahrer/dockerizing_rails/tree/rails_server) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/initial_dockerfile...rails_server) to the previous branch to see what changed.
+
 [Back to the overview](../README.md#assignments)

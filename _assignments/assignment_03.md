@@ -91,7 +91,7 @@ docker container prune
 *__!!Attention!!__* This will delete all stopped containers on your system.
 
 
-# Our changes
-You can find our changes in the [`initial_dockerfile` branch](https://github.com/jfahrer/dockerizing_rails/tree/initial_dockerfile) and [compare it to the previous branch](https://github.com/jfahrer/dockerizing_rails/compare/initial_dockerfile)
+# What changed
+You can find our changes in the [`initial_dockerfile`](https://github.com/jfahrer/dockerizing_rails/tree/initial_dockerfile) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/initial_dockerfile) to the previous branch to see what changed.
 
 [Back to the overview](../README.md#assignments)

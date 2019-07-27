@@ -14,7 +14,7 @@ Rebuilding the image every time we make changes is tedious and slows us down in 
     volumes:
       - ./:/usr/src/app:cached
     ports:
-      - 3000:3000
+      - 127.0.0.1:3000:3000
 ```
 
 The key part here is the `volumes` definition:
@@ -69,5 +69,8 @@ With the bind mount in place, we can start iterating on our application. Here ar
 * Add a `presence` validation to `app/models/activity.rb` for the `data` field.
 
 You should see the changes being reflected in the already running containers without the need to rebuild or restart anything.
+
+# What changed
+You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/iterating) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/glueing_things_together...iterating) to the previous branch to see what changed.
 
 [Back to the overview](../README.md#assignments)

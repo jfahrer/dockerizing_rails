@@ -99,7 +99,9 @@ Throughout the workshop you will complete the following assignments:
 * [Assignment 7 - Glueing things together](_assignments/assignment_07.md)
 * [Assignment 8 - Iterating](_assignments/assignment_08.md)
 * [Assignment 9 - Debugging](_assignments/assignment_09.md)
-* [Assignment 10 - Integrating Sidekiq](_assignments/assignment_10.md)
+* [Assignment 9 - Integrating Sidekiq](_assignments/assignment_10.md)
+* [Assignment 11 - Installing Webpacker](_assignments/assignment_11.md)
+* [Assignment 12 - Keeping things running with Spring](_assignments/assignment_12.md)
 
 
 # Learning more
