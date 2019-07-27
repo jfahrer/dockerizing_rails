@@ -1,0 +1,12 @@
+#!/bin/bash
+cd "$(dirname "$0")/.."
+
+set -ex
+
+script/bootstrap
+
+docker-compose up -d pg redis
+docker-compose run --rm app bin/wait-for-postgres
+docker-compose run --rm app bin/rake db:migrate
+
+docker-compose up -d
