@@ -105,26 +105,27 @@ Thanks to Docker and Compose, adding additional services to our Rails applicatio
   ```yaml
     sidekiq:
       image: your_docker_id/rails_app:v1
-      build:
-        context: .
       command: ["sidekiq"]
       volumes:
         - ./:/usr/src/app
+        - tmp:/usr/src/app/tmp
+        - gems:/usr/local/bundle
       environment:
         - POSTGRES_HOST=pg
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=secret
         - REDIS_HOST=redis
         - RAILS_ENV
+      tty: true
+      stdin_open: true
   ```
-
 
 The environment section of the `sidekiq` service is mostly identical with the one from the `app` service. There is one additional environment variable that we set: `REDIS_HOST=redis`. This environment variable is used in `config/initializers/sidekiq.rb` to configure Sidekiq. We could also specify `REDIS_PORT` and `REDIS_DB`, but since we are using the default values, there is no need to. However, we do have to add the `REDIS_HOST` environment variable to our `app` service so that Rails can enqueue jobs:
 ```yaml
       - REDIS_HOST=redis
 ```
 
-Check out the `_examples/docker-compose.yml.with_sidekiq` for a complete example.
+We can omit the `build` directive for the `sidekiq` service since we use the same image as the `app` service. Docker Compose will build the image for `app` and then just re-use it for `sidekiq`. Check out the `_examples/docker-compose.yml.with_sidekiq` for a complete example.
 
 
 ## Creating the job

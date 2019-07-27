@@ -22,8 +22,6 @@ services:
 
   sidekiq:
     image: your_docker_id/rails_app:v1
-    build:
-      context: .
     command: ["sidekiq"]
     volumes:
       - ./:/usr/src/app
@@ -35,6 +33,8 @@ services:
       - POSTGRES_PASSWORD=secret
       - REDIS_HOST=redis
       - RAILS_ENV
+    tty: true
+    stdin_open: true
 
   pg:
     image: postgres:10.6-alpine
