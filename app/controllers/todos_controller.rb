@@ -68,5 +68,4 @@ class TodosController < ApplicationController
   end
 
   helper_method :current_filter
-
 end
