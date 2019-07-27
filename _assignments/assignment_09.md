@@ -158,3 +158,5 @@ docker attach dockerizing_rails_app_1
 And there we go! If you press `ENTER` you will see that you are in a `byebug` session, just as before.
 
 If we end the session by typing `continue`, we will see the Rails log on our screen - we are still attached to the container. In order to detach from the container you can use the key sequence `Ctrl-p` `Ctrl-q`. You could also `Ctrl-c`, but that would terminate the container and you would have to restart the service.
+
+__*Side note*__: The naming conventions of Docker Compose makes it pretty straight forward to "guess". I also recommend using command-line completion for Docker and [Docker compose](https://docs.docker.com/compose/completion/)
