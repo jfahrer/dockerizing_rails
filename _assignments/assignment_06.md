@@ -40,6 +40,6 @@ To make sure it works, let's make a small change to our source code. Simply add 
 
 
 # What changed
-You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/utilizing_layers) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/integrating_postgres...utilizing_layers) to the previous branch to see what changed.
+You can find our changes in the [`utilizing_layers`](https://github.com/jfahrer/dockerizing_rails/tree/utilizing_layers) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/integrating_postgres...utilizing_layers) to the previous branch to see what changed.
 
 [Back to the overview](../README.md#assignments)

@@ -168,6 +168,6 @@ Add some todos and mark them as complete. You should see that jobs are being pro
 
 
 # What changed
-You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/sidekiq) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/debugging...sidekiq) to the previous branch to see what changed.
+You can find our changes in the [`sidekiq`](https://github.com/jfahrer/dockerizing_rails/tree/sidekiq) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/debugging...sidekiq) to the previous branch to see what changed.
 
 [Back to the overview](../README.md#assignments)

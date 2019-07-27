@@ -162,6 +162,6 @@ If we end the session by typing `continue`, we will see the Rails log on our scr
 __*Side note*__: The naming conventions of Docker Compose makes it pretty straight forward to "guess". I also recommend using command-line completion for Docker and [Docker compose](https://docs.docker.com/compose/completion/)
 
 # What changed
-You can find our changes in the [`integrating_postgres`](https://github.com/jfahrer/dockerizing_rails/tree/debugging) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/iterating...debugging) to the previous branch to see what changed.
+You can find our changes in the [`debugging`](https://github.com/jfahrer/dockerizing_rails/tree/debugging) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/iterating...debugging) to the previous branch to see what changed.
 
 [Back to the overview](../README.md#assignments)
