@@ -5,6 +5,21 @@ services:
     image: your_docker_id/rails_app:v1
     build:
       context: .
+    command: ["spring", "server"]
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - RAILS_ENV
+    volumes:
+      - ./:/usr/src/app:cached
+      - tmp:/usr/src/app/tmp
+      - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
+
+  web:
+    image: your_docker_id/rails_app:v1
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres

@@ -25,4 +25,6 @@ COPY . .
 
 EXPOSE 3000
 
+ENV PATH=./bin:$PATH
+
 CMD ["rails", "server", "-b", "0.0.0.0", "--pid=/tmp/server.pid"]
