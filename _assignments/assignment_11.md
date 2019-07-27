@@ -2,7 +2,7 @@ Okay, now let's get webpacker working with rails 5.2.3
 
 Let's install the most recent version of webpacker by adding it the to the Gemfile.
 
-```
+```ruby
 gem 'webpacker', '~> 4.x'
 ```
 
@@ -20,7 +20,7 @@ docker-compose run --rm app bundle exec rails webpacker:install
 
 Looks like yarn is not installed! Let's install yarn by changing the `Dockerfile`
 
-```
+```Dockerfile
 RUN apk add --update --no-cache \
       bash \
       build-base \
@@ -92,7 +92,7 @@ docker-compose build app
 
 In order to actually load the webpacks that are being generated (now application.js within `app/javascripts/packs`), let's add stylesheets and javascript files to use packs.
 
-```haml
+```erb
     <%= stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```

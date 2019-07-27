@@ -1,6 +1,6 @@
 # Assignment 6 - Utilizing layers
 In order to speed up our build process, we should take advantage of Docker's build cache. Right now we re-install all gems whenever we make a change to our source code and rebuild the image. That takes time and is annoying. We can easily work around this by copying the `Gemfile` and `Gemfile.lock` separately. Change your Dockerfile so that it looks more like this:
-```
+```Dockerfile
 FROM jfahrer/ruby:2.6.3-alpine3.10-ser
 
 RUN apk add --update --no-cache \

@@ -16,7 +16,7 @@ The goal is to make the call to `ScoreCalculator.call(Date.today)` asynchronous 
 ## Adding the Gem
 As we would do with a non-dockerized application, we start by adding the Sidekiq gem to our `Gemfile`:
 
-```
+```ruby
 gem "sidekiq", "~> 5.2.7"
 ```
 
@@ -37,7 +37,7 @@ There are still a few problems tho:
 To ensure a better experience we are going to use a concept we already learned about - a volume. We will use the volume to store a copy of our gems. Doing this allows us to skip building the image and just `bundle` as we would do with a non-dockerized ruby application.
 
 Let's a volume `gems` to our `app` service definition:
-```
+```yaml
     volumes:
       - ./:/usr/src/app:cached
       - tmp:/usr/src/app/tmp
@@ -46,7 +46,7 @@ Let's a volume `gems` to our `app` service definition:
 ```
 
 And just like in the prior examples, we also have to add the volume to the `volumes` section:
-```
+```yaml
 volumes:
   pg-data:
   tmp:
@@ -57,7 +57,7 @@ From here on we can just run `docker-compose run --rm app bundle` to bundle our 
 
 ## Setting up Sidekiq
 Now to the actual Sidekiq integration. Let's start by creating an initializer. Here is an example `config/initializers/sidekiq.rb`:
-```
+```ruby
 redis_url = "redis://#{ENV.fetch('REDIS_HOST', 'localhost')}/:#{ENV.fetch('REDIS_PORT', '6379')}/#{ENV.fetch('REDIS_DB', '0')}"
 
 Sidekiq.configure_server do |config|
@@ -82,13 +82,13 @@ Sidekiq::Testing.inline!
 ## Adding the service
 Thanks to Docker and Compose, adding additional services to our Rails application becomes a breeze. All we have to do is:
 * Add a service to our `docker-compose.yml` to run Redis:
-  ```
+  ```yaml
     redis:
       image: redis:5.0
   ```
 
 * Add a service to our `docker-compose.yml` to run Sidekiq:
-  ```
+  ```yaml
     sidekiq:
       image: your_docker_id/rails_app:v1
       build:
@@ -106,7 +106,7 @@ Thanks to Docker and Compose, adding additional services to our Rails applicatio
 
 
 The environment section of the `sidekiq` service is mostly identical with the one from the `app` service. There is one additional environment variable that we set: `REDIS_HOST=redis`. This environment variable is used in `config/initializers/sidekiq.rb` to configure Sidekiq. We could also specify `REDIS_PORT` and `REDIS_DB`, but since we are using the default values, there is no need to. However, we do have to add the `REDIS_HOST` environment variable to our `app` service so that Rails can enqueue jobs:
-```
+```yaml
       - REDIS_HOST=redis
 ```
 
@@ -128,7 +128,7 @@ end
 ```
 
 And then we update the `update_scores` method in `app/controllers/todos_controller.rb` to look like this:
-```
+```ruby
 def update_scores
   ScoreGenerationJob.perform_async(Date.today)
 end

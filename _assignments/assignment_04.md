@@ -22,7 +22,7 @@ __*Side note*__: When using `-p 3000:3000` you instruct Docker to listen on all 
 Let's make some changes to our Dockerfile to make our life a little easier and safe us some typing. **Before we get started, make sure to terminate any running containers**.
 
 Here is the updated version of the Dockerfile:
-```
+```Dockerfile
 FROM jfahrer/ruby:2.6.3-alpine3.10-ser
 
 RUN apk add --update --no-cache \

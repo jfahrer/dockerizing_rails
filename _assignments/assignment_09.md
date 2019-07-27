@@ -118,7 +118,7 @@ You already know how to fix the issue. Go ahead and make the code change and mak
 ## Making it work without stopping the server
 Depending on your style of working, starting and stopping the container whenever we want to start a `byebug` session can might be tedious. The good news is that there is another way! We can add the following settings to our `app` service definition in the `docker-compose.yml`:
 
-```
+```yaml
     tty: true
     stdin_open: true
 ```

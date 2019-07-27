@@ -7,7 +7,7 @@ cd first_image
 
 ### Building the image
 In this directory you will create the `Dockerfile` for your first image. Copy and paste the following content:
-```
+```Dockerfile
 FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install -y cowsay
