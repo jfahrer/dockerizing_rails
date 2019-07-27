@@ -161,6 +161,11 @@ If we end the session by typing `continue`, we will see the Rails log on our scr
 
 __*Side note*__: The naming conventions of Docker Compose makes it pretty straight forward to "guess". I also recommend using command-line completion for Docker and [Docker compose](https://docs.docker.com/compose/completion/)
 
+## There is more
+Another very useful command you should be aware of is `docker stats`. It shows you CPU, memory, disk and network usage of your containers. The fantastic thing here is that you have isolated statistics for each part of our application!
+
+And of course the is `docker-compose logs`. We've already used it, but I want to say a few more words. With these commands we have easy access to the logs of each part of our applications - independent of the language or type of service we are running. To ensure that this pattern works, your have to send the all logs of your applications to `STDOUT` and `STDERR`. These streams are picked up by docker and you can access them with `docker logs` and `docker-compose logs`. Writing to logfiles is discouraged in the container landscape. If whatever you are running in the container does not support sending logs to `STDOUT` or `STDERR`, write the logs to `/dev/stdout` or `/dev/stderr` files instead. This way they will end up on the respective streams.
+
 # What changed
 You can find our changes in the [`debugging`](https://github.com/jfahrer/dockerizing_rails/tree/debugging) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/iterating...debugging) to the previous branch to see what changed.
 
