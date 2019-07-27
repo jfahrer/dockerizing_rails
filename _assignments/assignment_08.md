@@ -52,8 +52,7 @@ There is one more change we have to make to our `Dockerfile`. Since every contai
 CMD ["rails", "server", "-b", "0.0.0.0", "--pid=/tmp/server.pid"]
 ```
 
-
-Check out `_examples/docker-compose.yml.with_bind_mount` and `_examples/Dockerfile.with_server_pid` for a complete examples.
+Check out `_examples/docker-compose.yml.with_bind_mount` and `_examples/Dockerfile.with_server_pid` for complete examples.
 
 
 We can now restart our containers with:

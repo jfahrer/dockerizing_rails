@@ -1,0 +1,74 @@
+version: "3.7"
+
+services:
+  app:
+    image: your_docker_id/rails_app:v1
+    build:
+      context: .
+    command: ["spring", "server"]
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - RAILS_ENV
+    volumes:
+      - ./:/usr/src/app:cached
+      - tmp:/usr/src/app/tmp
+      - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
+
+  web:
+    image: your_docker_id/rails_app:v1
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - RAILS_ENV
+    volumes:
+      - ./:/usr/src/app:cached
+      - tmp:/usr/src/app/tmp
+      - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
+    ports:
+      - 127.0.0.1:3000:3000
+    tty: true
+    stdin_open: true
+
+  sidekiq:
+    image: your_docker_id/rails_app:v1
+    build:
+      context: .
+    command: ["sidekiq"]
+    volumes:
+      - ./:/usr/src/app
+      - tmp:/usr/src/app/tmp
+      - gems:/usr/local/bundle
+      - node_modules:/usr/src/app/node_modules
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - RAILS_ENV
+
+  pg:
+    image: postgres:10.6-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+  redis:
+    image: redis:5.0
+    volumes:
+      - redis-data:/data
+
+volumes:
+  pg-data:
+  redis-data:
+  tmp:
+  gems:
+  node_modules:
