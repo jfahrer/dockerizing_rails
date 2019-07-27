@@ -1,5 +1,5 @@
 # Assignment 8 - Iterating
-Rebuilding the image every time we make changes is tedious and slows us down in our development workflow. But Docker wouldn't be Docker if we couldn't work around this problem. The solution here are so called bind mounts. A bind-mount allows us to mount a local file or directory into the containers file system. When using the Docker CLI, you can specify the bind-mount using the `-v` flag. With Docker Compose, we simply add the definition the `docker-compose.yml` via the `volumes` directive. Here is an example:
+Rebuilding the image every time we make changes is tedious and slows us down in our development workflow. But Docker wouldn't be Docker if we couldn't work around this problem. The solution here are so called bind mounts. A bind-mount allows us to mount a local file or directory into the containers file system. For the Docker CLI, we can specify the bind-mount using the `-v` flag. With Docker Compose, we simply add the definition the `docker-compose.yml` via the `volumes` directive. Here is an example:
 
 ```yaml
   app:

@@ -1,5 +1,5 @@
 # Assignment 1 - Hello World
-To run you first container, please execute the following command on your machine:
+To run your first container, please execute the following command on your machine:
 ```
 docker container run hello-world
 ```

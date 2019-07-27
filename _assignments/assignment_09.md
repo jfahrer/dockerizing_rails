@@ -96,7 +96,7 @@ But before we make the change, let's try to get a `byebug` session from an actua
 
 What should happen is that the Rails server stop and opens a `byebug` - but as you can tell, this doesn't work. The request is processed and http response is returned to our browser. This happens because by default the contains that are started with `docker-compose up` (as well as `docker-compose start` and `docker-compose restart`) don't have a tty attached and `byebug` can't hence not start the session.
 
-We've seen that opening a byebug session works when we use `docker-compose run`. It does because Docker Compose will automatically attach a pseudo-tty for us and attach STDIN as well. So let's start the Rails server with `docker-compose run` instead. We have to first shut down the current app service, otherwise we will not be able to start a new Rails server because port 3000 is already in use.
+We've seen that opening a byebug session works when we use `docker-compose run`. It does because Docker Compose will automatically attach a pseudo-tty for us and attach `STDIN` as well. So let's start the Rails server with `docker-compose run` instead. We have to first shut down the current app service, otherwise we will not be able to start a new Rails server because port 3000 is already in use.
 ```
 docker-compose stop app
 ```
@@ -111,19 +111,19 @@ Since we defined the port mapping in our `docker-compose.yml` and `rails server`
 docker-compose run --rm --service-ports app
 ```
 
-If you now mark another todo as complete or active you will be dropped into a `byebug` session.
+If we now mark another todo as complete or active we will be dropped into a `byebug` session.
 
-You already know how to fix the issue. Go ahead and make the code change and make sure that the test passes.
+We already know how to fix the issue. Go ahead and make the code change and make sure that the test passes.
 
 ## Making it work without stopping the server
-Depending on your style of working, starting and stopping the container whenever we want to start a `byebug` session can might be tedious. The good news is that there is another way! We can add the following settings to our `app` service definition in the `docker-compose.yml`:
+Depending on your style of working, starting and stopping the container whenever we want to start a `byebug` session might be tedious. The good news is that there is another way! We can add the following settings to our `app` service definition in the `docker-compose.yml`:
 
 ```yaml
     tty: true
     stdin_open: true
 ```
 
-These to flags do what `docker-compose run` does for us automatically: They will attach a pseudo-tty to the container and keep STDIN open. You can find a complete example in `_examples/docker-compose.yml.with_tty`.
+These to flags do what `docker-compose run` does for us automatically: They will attach a pseudo-tty to the container and keep `STDIN` open. You can find a complete example in `_examples/docker-compose.yml.with_tty`.
 
 With these flags in place we can now restart our containers with
 ```
@@ -157,6 +157,6 @@ docker attach dockerizing_rails_app_1
 
 And there we go! If you press `ENTER` you will see that you are in a `byebug` session, just as before.
 
-If we end the session by typing `continue`, we will see the Rails log on our screen - we are still attached to the container. In order to detach from the container you can use the key sequence `Ctrl-p` `Ctrl-q`. You could also `Ctrl-c`, but that would terminate the container and you would have to restart the service.
+If we end the session by typing `continue`, we will see the Rails log on our screen - we are still attached to the container. In order to detach from the container we can use the key sequence `Ctrl-p` `Ctrl-q`. We could also press `Ctrl-c`, but that would terminate the container and we would have to restart the service.
 
 __*Side note*__: The naming conventions of Docker Compose makes it pretty straight forward to "guess". I also recommend using command-line completion for Docker and [Docker compose](https://docs.docker.com/compose/completion/)
