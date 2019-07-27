@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=secret
       - RAILS_ENV
     ports:
-      - 3000:3000
+      - 127.0.0.1:3000:3000
 
   pg:
     image: postgres:10.6-alpine

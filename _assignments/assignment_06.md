@@ -26,7 +26,7 @@ EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
 ```
 
-The key change here is that we copy our `Gemfile` and `Gemfile.lock` separately and run bundle install BEFORE we copy all of the source code. As long as the two haven't changed, we can use the intermediate image from the build cache.
+The key change here is that we copy our `Gemfile` and `Gemfile.lock` separately and run bundle install /before/ we copy all of the source code. As long as the two haven't changed, we can use the intermediate image from the build cache.
 
 Rebuild the image with the changes in place:
 ```
