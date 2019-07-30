@@ -102,6 +102,7 @@ Throughout the workshop you will complete the following assignments:
 * [Assignment 9 - Integrating Sidekiq](_assignments/assignment_10.md)
 * [Assignment 11 - Installing Webpacker](_assignments/assignment_11.md)
 * [Assignment 12 - Keeping things running with Spring](_assignments/assignment_12.md)
+* [Assignment 13 - Scripts To Rule Them All](_assignments/assignment_13.md)
 
 
 # Learning more

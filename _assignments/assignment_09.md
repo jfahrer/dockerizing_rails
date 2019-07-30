@@ -166,6 +166,13 @@ Another very useful command you should be aware of is `docker stats`. It shows y
 
 And of course the is `docker-compose logs`. We've already used it, but I want to say a few more words. With these commands we have easy access to the logs of each part of our applications - independent of the language or type of service we are running. To ensure that this pattern works, your have to send the all logs of your applications to `STDOUT` and `STDERR`. These streams are picked up by docker and you can access them with `docker logs` and `docker-compose logs`. Writing to logfiles is discouraged in the container landscape. If whatever you are running in the container does not support sending logs to `STDOUT` or `STDERR`, write the logs to `/dev/stdout` or `/dev/stderr` files instead. This way they will end up on the respective streams.
 
+And last but not least, you can use `docker exec` and `docker-compose exec` to start a separate process in already running container:
+```
+docker-compose exec app bash
+```
+
+This will will open a shell in the running container for `app` service. This means that you now can use or install additional tooling to debug your application in an isolated environment.
+
 # What changed
 You can find our changes in the [`debugging`](https://github.com/jfahrer/dockerizing_rails/tree/debugging) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/iterating...debugging) to the previous branch to see what changed.
 
