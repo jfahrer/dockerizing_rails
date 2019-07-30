@@ -1,6 +1,6 @@
 # Dockerizing Rails - A supercharged development process
 
-## Getting started
+## Preparing for the workshop
 Please make sure to install
 * Docker - https://hub.docker.com/search?q=&type=edition&offering=community
 * Git - https://git-scm.com/downloads
