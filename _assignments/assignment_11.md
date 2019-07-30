@@ -84,7 +84,7 @@ volumes:
   node_modules:
 ```
 
-Let’s try booting up the server agin.
+Let’s try booting up the server again.
 
 ```
 docker-compose up app
@@ -122,7 +122,7 @@ docker-compose build app
 
 Okay, now you are all set up and so will other engineers that install the project!
 
-In order to actually load the webpacks that are being generated, found in`app/javascripts/packs`, let's add stylesheets and javascript files to the application layout in `application.html.erb`
+In order to actually load the webpacks that are being generated, found in `app/javascripts/packs`, let's add stylesheets and javascript files to the application layout in `application.html.erb`
 
 ```erb
     <%= stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -143,7 +143,7 @@ And also let’s add in rails-ujs and turbolinks.
 docker-compose run --rm app yarn add rails-ujs turbolinks
 ```
 
-And now we can import some code that facilitates bootstrap, rails-ujs, turbolinks by placing the following code within our `javascript/packs/application.js`
+And now we can import some code that facilitates bootstrap, rails-ujs, turbolinks by placing the following code within our `app/javascript/packs/application.js`
 
 ```
 import “../src/bootstrap_and_rails”;

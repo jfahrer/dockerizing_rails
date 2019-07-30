@@ -55,9 +55,9 @@ CMD ["rails", "server", "-b", "0.0.0.0", "--pid=/tmp/server.pid"]
 Check out `_examples/docker-compose.yml.with_bind_mount` and `_examples/Dockerfile.with_server_pid` for complete examples.
 
 
-We can now restart our containers with:
+We can now restart our containers and rebuild the image in one go with:
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 Docker Compose will pick up our changes and re-create the container for our `app` service and create the new `tmp` volume. Make sure that everything is running with `docker-compose ps` and use `docker-compose logs` to troubleshoot any issues.

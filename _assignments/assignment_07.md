@@ -36,7 +36,7 @@ __*Side note*__: Docker Compose automatically prefixes all resources with the pr
 
 So let's run the migrations. Just as with the Docker CLI, we can run arbitrary commands in the context of a service:
 ```
-docker-compose run --rm app rake db:create db:migrate
+docker-compose run --rm app rake db:create db:migrate db:test:prepare
 ```
 
 Now the web application should work as expected. The `--rm` in the command deletes the container right after it terminates. This is useful because we don't have to clean up after ourselves. Go ahead and browse http://localhost:3000 to verify it works as expected.

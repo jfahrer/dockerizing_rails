@@ -149,7 +149,7 @@ def update_scores
 end
 ```
 
-So instead of calling the `ScoreCalculator` directly, we will enqueu a Sidekiq job that will do this for us.
+So instead of calling the `ScoreCalculator` directly, we will enqueue a Sidekiq job that will do this for us.
 
 Once you're done with the changes, restart the `app` service and run the specs to make sure everything works as expected:
 ```
