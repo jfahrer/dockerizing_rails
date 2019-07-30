@@ -1,0 +1,52 @@
+// Quick shout out to
+// Darkly 4.3.1
+// Bootswatch
+
+//
+// Color system
+//
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #ebebeb !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #999 !default;
+$gray-700: #444 !default;
+$gray-800: #303030 !default;
+$gray-900: #222 !default;
+$black: #000 !default;
+
+$blue: #375a7f !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #e74c3c !default;
+$orange: #fd7e14 !default;
+$yellow: #f39c12 !default;
+$green: #00bc8c !default;
+$teal: #20c997 !default;
+$cyan: #3498db !default;
+
+$primary: $blue !default;
+$secondary: $gray-700 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-600 !default;
+$dark: $gray-800 !default;
+
+$yiq-contrasted-threshold: 175 !default;
+
+// Body
+
+$body-bg: $gray-900 !default;
+$body-color: $white !default;
+
+// Links
+
+$link-color: $success !default;
+
+// Fonts

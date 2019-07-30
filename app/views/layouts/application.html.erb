@@ -24,6 +24,10 @@
             <a class="nav-item nav-link <%= params[:controller] == "activities" ? "active" : "" %>" href="<%= activities_path %>">Activities</a>
           </div>
         </div>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="nightModeSwitch" checked="">
+          <label class="custom-control-label" for="nightModeSwitch">Night Mode</label>
+        </div>
       </nav>
 
       <%= yield %>
