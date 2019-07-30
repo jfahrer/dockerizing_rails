@@ -72,7 +72,7 @@ docker image pull postgres:10.6-alpine
 
 The output will look similar to this:
 ```
-2.5.5-alpine3.9-railsconf: Pulling from jfahrer/ruby
+2.6.3-alpine3.10-ser: Pulling from jfahrer/ruby
 bdf0201b3a05: Pull complete
 67a4a175230f: Pull complete
 5b688ca58800: Pull complete
