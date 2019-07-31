@@ -76,12 +76,13 @@ docker-compose up -d --build
 ```
 
 ### Bonus
-What will happen if you just run the following command:
-```
-docker-compose run --rm app
-```
+* What will happen if you just run the following command? Any idea why?
+  ```
+  docker-compose run --rm app
+  ```
+* Import seed data by running `rake db:seed`
+* What happens when you shut down the services with `docker-compose down` and then run the test suite?
 
-Any idea why?
 
 # What changed
 You can find our changes in the [`glueing_things_together`](https://github.com/jfahrer/dockerizing_rails/tree/glueing_things_together) branch. [Compare it](https://github.com/jfahrer/dockerizing_rails/compare/utilizing_layers...glueing_things_together) to the previous branch to see what changed.
