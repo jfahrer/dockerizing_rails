@@ -2,6 +2,19 @@
 
 Okay, now let's get webpacker working with rails 5.2.3
 
+## Set up Webpacker
+
+Tasks to complete solution:
+
+- Add the most recent version of webpacker gem as a bundler dependency
+- Add yarn via `apk` in the docker image
+- Mount a volume for the `node_modules` directory to `/usr/src/app/node_modules`
+- Install webpacker by running the rake task: `webpacker:install`
+- Navigate to localhost:3000 and open your web console.
+- If you see "Hello World from Webpacker!", it worked!
+
+> **Note**: Step-by-step solutions can be found below. All the steps above should excercise previously learned concepts. Give it a shot, then look below for help!
+
 Let's install the most recent version of webpacker by adding it the to the Gemfile.
 
 ```
@@ -14,13 +27,30 @@ Using what we learned from the sidekiq gem installation, let's reinstall.
 docker-compose run --rm app bundle
 ```
 
-Now run the `webpacker:install` rails rake task.
+In order to install webpacker, we'll need to add `yarn` to the Docker image. Add this to the `Dockerfile`
+
+```
+RUN apk add --update --no-cache \
+      bash \
+      build-base \
+      nodejs \
+      sqlite-dev \
+      tzdata \
+      postgresql-dev \
+      yarn
+```
+
+And rebuild the image:
+
+```
+docker-compose build app
+```
+
+Now that we have yarn installed, we can run the `webpacker:install` rails rake task.
 
 ```
 docker-compose run --rm app bundle exec rails webpacker:install
 ```
-
-> **Note**: We have already added yarn to the Docker image – normally you would need to add yarn as a dependency prior to this step.
 
 If you run a `git status`, You'll see quite a few files were created and then `yarn install` was run.
 
@@ -105,6 +135,8 @@ In order to actually load the webpacks that are being generated, found in `app/j
 ```
 
 And now if you reload localhost:3000 you'll notice a `console.log` letting you know that webpack compiled assets are being loaded on the page!
+
+## Using Webpacker
 
 Let’s replace EVERYTHING in the asset pipeline with webpacker (starting with bootstrap)
 
