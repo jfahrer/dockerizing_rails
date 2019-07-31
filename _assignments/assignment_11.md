@@ -12,6 +12,7 @@ Tasks to complete solution:
 - Install webpacker by running the rake task: `webpacker:install`
 - Navigate to localhost:3000 and open your web console.
 - If you see "Hello World from Webpacker!", it worked!
+- If you got this far, there are more exercises in the "[Using Webpacker](#using-webpacker)" section
 
 > **Note**: Step-by-step solutions can be found below. All the steps above should excercise previously learned concepts. Give it a shot, then look below for help!
 
@@ -127,7 +128,7 @@ docker-compose build app
 
 Okay, now you are all set up and so will other engineers that install the project!
 
-In order to actually load the webpacks that are being generated, found in `app/javascripts/packs`, let's add stylesheets and javascript files to the application layout in `application.html.erb`
+In order to actually load the webpacks that are being generated, found in `app/javascript/packs`, let's add stylesheets and javascript files to the application layout in `application.html.erb`
 
 ```erb
     <%= stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -150,10 +151,38 @@ And also let’s add in rails-ujs and turbolinks.
 docker-compose run --rm app yarn add rails-ujs turbolinks
 ```
 
-And now we can import some code that facilitates bootstrap, rails-ujs, turbolinks by placing the following code within our `app/javascript/packs/application.js`
+This adds it to your package.json file, and also locks the dependencies in the yarn.lock file. 
+
+
+We will need to expose some bootstrap dependencies on the `window` object in javascript, so let's add the following code to `config/webpack/environment.js`
+
+```javascript
+const { environment } = require('@rails/webpacker')
+
+const webpack = require("webpack")
+
+environment.plugins.append("Provide", new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery',
+  Popper: ['popper.js', 'default']
+}))
+module.exports = environment
+```
+
+And now we can import those dependencies, that facilitates bootstrap, rails-ujs, turbolinks by placing the following code within our `app/javascript/packs/application.js`
 
 ```
-import “../src/bootstrap_and_rails”;
+import "../src/bootstrap_and_rails";
+```
+
+Check out the code inside `app/javascript/src/bootstrap_and_rails.js` to see how we're using webpacker.
+
+Now that we've replaced everything in the asset pipeline, we can remove the other javascript and stylesheet imports inside our `application.html.erb` layout.
+
+```
+   // Delete me!
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```
 
 Now refresh the page and you can see that dark mode is now working! Sprockets has been completely replaced by webpacker now.
@@ -164,7 +193,7 @@ You can find our changes in the [`webpacker`](~https://github.com/jfahrer/docker
 
 [Back to the overview](~../README.md#assignments~)
 
-## Extra Credit
+## Bonus
 
 Notice how each render takes quite a bit of time? Rails is generating those assets when the web request is issued.
 
