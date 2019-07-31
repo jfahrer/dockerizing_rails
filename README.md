@@ -111,4 +111,4 @@ Throughout the workshop you will complete the following assignments:
 * https://docs.docker.com
 
 # Contributions
-Special thanks to [@hjhart](https://github.com/hjhart) and [@palexvs](https://github.com/palexvs) for all there help with this workshop.
+Special thanks to [@hjhart](https://github.com/hjhart) and [@palexvs](https://github.com/palexvs) for all their help with this workshop.
