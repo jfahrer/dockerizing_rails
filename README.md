@@ -104,11 +104,35 @@ Throughout the workshop you will complete the following assignments:
 * [Assignment 12 - Keeping things running with Spring](_assignments/assignment_12.md)
 * [Assignment 13 - Scripts To Rule Them All](_assignments/assignment_13.md)
 
+# TLDR - I just want to see a dockerized Rails app
+Check out the [`dockerized`](https://github.com/jfahrer/dockerizing_rails/tree/dockerized) branch and run `script/setup` to start the application.
 
 # Learning more
-* https://LearnDocker.online
-* https://RailsWithDocker.com
-* https://docs.docker.com
+## Additional topics
+There are more topics that didn't quite fit into the workshop.
+* Running the application as a different user
+* Advanced caching mechanisms for gems and libraries
+* Integration testing with Capybara/Cypress
+* Utilizing CI/CD
+* Preparing your image for production
+* Deploying to Kubernetes
+And much more.
+
+Sign up at [RailsWithDocker.com](https://RailsWithDocker.com) and I'll shoot you an email as soon as the material is ready.
+
+## Resources
+* https://LearnDocker.online: Free resource with 11+ hours of video content teaching you everything I know about Docker and Containers.
+* https://RailsWithDocker.com: Free online resource teaching you how to dockerize a Rails app. It covers everything you learned in this workshop *and* more.
+* https://docs.docker.com: The official Docker documentation
+
+## Doing more
+Nothing better than practicing your newly acquired skills. I suggest that you dockerize one of you applications or extend the demo app with some additional functionality. Here are some ideas:
+* Paginate activities and todos
+* Add a filter to display archived todos: There is currently no way to show archived todos
+* Add a search engine: Use Elasticsearch, Solr, or another searchengine to make todos searchable
+* Soft delete todos: We currently allow users to delete todos from the database
+* Add a Sidekiq monitor (https://github.com/mperham/sidekiq/wiki/Monitoring): Try to run the monitor in as its own Rack app in its own container
+
 
 # Contributions
 Special thanks to [@hjhart](https://github.com/hjhart) and [@palexvs](https://github.com/palexvs) for all their help with this workshop.
