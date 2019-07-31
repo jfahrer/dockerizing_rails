@@ -7,9 +7,9 @@
         <tr>
           <th colspan="3">
             <ul class="nav nav-pills">
-              <% ["all_todos", "active", "completed"].each do |filter| %>
+              <% { "All" => nil, "Active" => "active", "Completed" => "completed", }.each do |name, filter| %>
                 <li class="nav-item">
-                  <%= link_to filter_names[filter], todos_path(filter: filter), class: "nav-link #{current_filter == filter ? "active" : ""}" %>
+                  <%= link_to name, todos_path(filter: filter), class: "nav-link #{current_filter == filter ? "active" : ""}" %>
                 </li>
               <% end %>
             </ul>

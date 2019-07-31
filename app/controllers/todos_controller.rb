@@ -4,7 +4,7 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = Todo.public_send(current_filter).ordered
+    @todos = Todo.public_send(current_filter || :all_todos).ordered
   end
 
   # POST /todos
@@ -62,8 +62,8 @@ class TodosController < ApplicationController
   def current_filter
     @filter ||= begin
                   filter = params[:filter]
-                  allowed_filters = ["all_todos", "active", "completed"]
-                  allowed_filters.include?(filter) ? filter : allowed_filters.first
+                  allowed_filters = ["active", "completed"]
+                  allowed_filters.include?(filter) ? filter : nil
                 end
   end
 
