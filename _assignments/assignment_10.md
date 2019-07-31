@@ -30,7 +30,7 @@ docker-compose run --rm app bundle
 With the `Gemfile.lock` in place we can now build the image and can rest assured that we will always use the locked version of Sidekiq.
 
 There are still a few problems tho:
-* We have to run 2 commands in order run install images
+* We have to run 2 commands in order to run install images
 * Installing gems takes a long time because if the `Gemfile` or `Gemfile.lock` changes, the `RUN` instruction in our `Dockerfile` will be executed in the context of a "blank" ruby installation. Hence all gems in the `Gemfile` have to be installed.
 * Switching between branches with different `Gemfiles`s becomes tedious. Every time we switch, we have to build the Docker image again.
 
