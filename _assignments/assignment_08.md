@@ -1,5 +1,5 @@
 # Assignment 8 - Iterating
-Rebuilding the image every time we make changes is tedious and slows us down in our development workflow. But Docker wouldn't be Docker if we couldn't work around this problem. The solution here are so called bind mounts. A bind-mount allows us to mount a local file or directory into the containers file system. For the Docker CLI, we can specify the bind-mount using the `-v` flag. With Docker Compose, we simply add the definition the `docker-compose.yml` via the `volumes` directive. Here is an example:
+Rebuilding the image every time we make changes is tedious and slows us down in our development workflow. But Docker wouldn't be Docker if we couldn't work around this problem. The solution here are so called bind mounts. A bind mount allows us to mount a local file or directory into the containers file system. For the Docker CLI, we can specify the bind mount using the `-v` flag. With Docker Compose, we simply add the definition the `docker-compose.yml` via the `volumes` directive. Here is an example:
 
 ```yaml
   app:
@@ -25,10 +25,10 @@ The key part here is the `volumes` definition:
 
 We instruct Docker Compose to mount the current local working directory (`./`) to the `/usr/src/app` directory in the container. The `/usr/src/app` directory in the image contains a copy of our source code. We essentially just "replace" the content with what is currently on our local file system.
 
-> **Note**: The `cached` options will [increase the performance](https://docs.docker.com/docker-for-mac/osxfs-caching/) of the bind-mount on MacOS. Unlike on Linux, there is some overhead when using bind-mounts on MacOS. Remember, Linux containers need to run on Linux and Docker will setup a virtual machine running Linux on your Mac. Getting the data from your Mac into the virtual machine requires a shared file system called [`osxfs`](https://docs.docker.com/docker-for-mac/osxfs/). There are significant overheads to guaranteeing perfect consistency and the `cached` options looses up the those guarantees. We don't require perfect consistency for our use case: Mounting our source code into the container.
+> **Note**: The `cached` options will [increase the performance](https://docs.docker.com/docker-for-mac/osxfs-caching/) of the bind mount on MacOS. Unlike on Linux, there is some overhead when using bind mounts on MacOS. Remember, Linux containers need to run on Linux and Docker will setup a virtual machine running Linux on your Mac. Getting the data from your Mac into the virtual machine requires a shared file system called [`osxfs`](https://docs.docker.com/docker-for-mac/osxfs/). There are significant overheads to guaranteeing perfect consistency and the `cached` options looses up the those guarantees. We don't require perfect consistency for our use case: Mounting our source code into the container.
 
 In addition to the bind mount we will also add a volume for our `tmp/` directory. This is not strictly required but recommended for the following reasons:
-* On MacOS a volume will be a lot faster than a bind-mount. Since we Rails will read and write temporary and cache data to `tmp/` we want to give ourselves maximum speed.
+* On MacOS a volume will be a lot faster than a bind mount. Since we Rails will read and write temporary and cache data to `tmp/` we want to give ourselves maximum speed.
 * We don't usually access anything in the `tmp/` directory locally, so there is no reason to write the data back to our Docker Host.
 * [Bootsnap](https://github.com/Shopify/bootsnap) doesn't seem to [play nice](https://github.com/Shopify/bootsnap/issues/177) with the `cached` option and using a dedicated volume solves this problem for us.
 
