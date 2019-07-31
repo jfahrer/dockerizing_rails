@@ -48,9 +48,9 @@ The environment variables that we pass in are used to configure the connection t
 
 You might also have spotted the `--link` flag in our command. This flag allows us to talk to our Postgres container by its name `pg`. 
 
-__*Side note*__: We don't need to tell Docker which command we want to execute in the container because we made `rails server` the default in the prior assignment.
+> **Note**: We don't need to tell Docker which command we want to execute in the container because we made `rails server` the default in the prior assignment.
 
-__*Side note*__: `--link` is deprecated and we will learn about a better mechanism later in the workshop. However, it is the easiest way to get the app up and running for now.
+> **Note**: `--link` is deprecated and we will learn about a better mechanism later in the workshop. However, it is the easiest way to get the app up and running for now.
 
 If you open your browser and go to http://localhost:3000, you will see that we need to migrate our database. So let's do that in another container (in another shell):
 ```

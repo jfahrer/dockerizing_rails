@@ -14,9 +14,9 @@ Go ahead and try to create a few books via the web interface.
 
 Once you are done, you can terminate Rails and the container by pressing `Ctrl-C`.
 
-__*Side note*__: Accessing a service inside a container will NOT work of the service only listens on `localhost`. In other words, you have to make sure that the service listens on the outwards facing ethernet interfaces of the container. We told our Rails application to listen on `0.0.0.0` which is an alias for all interfaces.
+> **Note**: Accessing a service inside a container will NOT work of the service only listens on `localhost`. In other words, you have to make sure that the service listens on the outwards facing ethernet interfaces of the container. We told our Rails application to listen on `0.0.0.0` which is an alias for all interfaces.
 
-__*Side note*__: When using `-p 3000:3000` you instruct Docker to listen on all interfaces on your local machine. That means that your rails service will be accessible from other machines. Not what you want? Try `-p 127.0.0.1:3000:3000` instead to only listen on `localhost`.
+> **Note**: When using `-p 3000:3000` you instruct Docker to listen on all interfaces on your local machine. That means that your rails service will be accessible from other machines. Not what you want? Try `-p 127.0.0.1:3000:3000` instead to only listen on `localhost`.
 
 ## Enhancing the Dockerfile
 Let's make some changes to our Dockerfile to make our life a little easier and safe us some typing. **Before we get started, make sure to terminate any running containers**.

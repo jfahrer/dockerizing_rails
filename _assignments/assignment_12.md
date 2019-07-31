@@ -58,7 +58,7 @@ docker-compose build app
 docker-compose up -d
 ```
 
-*__Side note__*: Run the command a second time if you get an error - depending on the order in which things happen the app container might still be holding port 3000 open.
+> **Note**: Run the command a second time if you get an error - depending on the order in which things happen the app container might still be holding port 3000 open.
 
 
 Instead of using `docker-compose run` we can now use `docker-compose exec` and send arbitrary shell commands to a running container of the `app` service:

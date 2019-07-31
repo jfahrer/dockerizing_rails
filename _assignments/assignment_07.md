@@ -32,7 +32,7 @@ We can also append some additional flags to the `docker-compose logs` command. U
 ## Getting the app up and running
 Try browsing http://localhost:3000 - you will see that the database has not been migrated. That makes sense, we just created a whole new set of containers and volumes. 
 
-__*Side note*__: Docker Compose automatically prefixes all resources with the project name (the name of the current directory per default).
+> **Note**: Docker Compose automatically prefixes all resources with the project name (the name of the current directory per default).
 
 So let's run the migrations. Just as with the Docker CLI, we can run arbitrary commands in the context of a service:
 ```
@@ -51,7 +51,7 @@ And we can easily start a rails console as well:
 docker-compose run --rm app rails c
 ```
 
-__*Side note*__: We don't have to specify the `-it` flags with `docker-compose run`. Docker Compose takes care of that for us automatically when using the `run` command.
+> **Note**: We don't have to specify the `-it` flags with `docker-compose run`. Docker Compose takes care of that for us automatically when using the `run` command.
 
 
 ### Shutting things down

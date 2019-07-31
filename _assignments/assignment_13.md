@@ -41,7 +41,7 @@ To make calling `pg_isready` easier, we are going to wrap it in another script. 
 cp -rp _examples/wait-for-postgres ./bin
 ```
 
-__*Side note*__: We place the `wait-for-postgres` script in `bin/` because it is intended to be executed within the application context. That means we make it part of the application and run it in containers. Everything in `script/` is not part of the actual application. Those are helpers that we use to interact with our application. Everything in `script/` is intended to be run on the Docker Host.
+> **Note**: We place the `wait-for-postgres` script in `bin/` because it is intended to be executed within the application context. That means we make it part of the application and run it in containers. Everything in `script/` is not part of the actual application. Those are helpers that we use to interact with our application. Everything in `script/` is intended to be run on the Docker Host.
 
 The script uses the `POSTGRES_HOST` environment variable that we pass to the our containers to connect to Postgres. `pg_isready` will yield a unsuccessful exit code if it can't connect to Postgres. The script simply executes `pg_isready` until it returns successful.
 

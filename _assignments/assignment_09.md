@@ -159,7 +159,7 @@ And there we go! If you press `ENTER` you will see that you are in a `byebug` se
 
 If we end the session by typing `continue`, we will see the Rails log on our screen - we are still attached to the container. In order to detach from the container we can use the key sequence `Ctrl-p` `Ctrl-q`. We could also press `Ctrl-c`, but that would terminate the container and we would have to restart the service.
 
-__*Side note*__: The naming conventions of Docker Compose makes it pretty straight forward to "guess". I also recommend using command-line completion for Docker and [Docker compose](https://docs.docker.com/compose/completion/)
+> **Note**: The naming conventions of Docker Compose makes it pretty straight forward to "guess". I also recommend using command-line completion for Docker and [Docker compose](https://docs.docker.com/compose/completion/)
 
 ## There is more
 Another very useful command you should be aware of is `docker stats`. It shows you CPU, memory, disk and network usage of your containers. The fantastic thing here is that you have isolated statistics for each part of our application!
