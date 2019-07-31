@@ -30,7 +30,7 @@ To clean up, let's remove the `node_modules` directory that was just created (`r
 
 Add a volume called `node_modules` and mount it to `/usr/src/app/node_modules`.
 
-\*>**\***Note**\***: We have tried many different times to get the node_modules extracted to another directory (e.g. `/usr/local/node_modules`) but it never works properly, unfortunately. So this is second best. Report back if you find a way of doing this.\*
+> **Note**: We have tried many different times to get the node_modules extracted to another directory (e.g. `/usr/local/node_modules`) but it never works properly, unfortunately. So this is second best. Report back if you find a way of doing this.
 
 ```yaml
   app:
@@ -65,7 +65,7 @@ Let’s try booting up the server again.
 docker-compose up app
 ```
 
-> **Note**: We’ll see another error. It’s because we removed the node\_modules directory – now that we have a volume mounted let’s install those again.*
+> **Note**: We’ll see another error. It’s because we removed the node_modules directory – now that we have a volume mounted let’s install those again.
 
 ```
 docker-compose run --rm app yarn install
@@ -140,7 +140,7 @@ We can generate those assets as soon as the javascript is saved using the `./bin
 
 As an exercise for the reader, let’s extract the `bin/webpack-dev-server` process into a separate docker container.
 
-Hint: After running `webpacker:install` this message is presented to the user.
+> **Hint**: After running `webpacker:install` this message is presented to the user.
 
 ```
 You need to allow webpack-dev-server host as allowed origin for connect-src.
@@ -149,4 +149,6 @@ config/initializers/content_security_policy.rb with a snippet like this:
 policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 ```
 
-Super-hint: [webpacker/docker.md at master · rails/webpacker · GitHub](~https://github.com/rails/webpacker/blob/master/docs/docker.md~)
+> **Super-hint**: [webpacker/docker.md at master · rails/webpacker · GitHub](~https://github.com/rails/webpacker/blob/master/docs/docker.md~)
+
+[Back to the overview](../README.md#assignments)
