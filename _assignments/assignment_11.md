@@ -187,12 +187,6 @@ Now that we've replaced everything in the asset pipeline, we can remove the othe
 
 Now refresh the page and you can see that dark mode is now working! Sprockets has been completely replaced by webpacker now.
 
-# What changed
-
-You can find our changes in the [`webpacker`](~https://github.com/jfahrer/dockerizing_rails/tree/webpacker~) branch. [Compare it](~https://github.com/jfahrer/dockerizing_rails/compare/sidekiq...webpacker~) to the previous branch to see what changed.
-
-[Back to the overview](~../README.md#assignments~)
-
 ## Bonus
 
 Notice how each render takes quite a bit of time? Rails is generating those assets when the web request is issued.
@@ -212,4 +206,8 @@ policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035"
 
 > **Super-hint**: [webpacker/docker.md at master · rails/webpacker · GitHub](~https://github.com/rails/webpacker/blob/master/docs/docker.md~)
 
-[Back to the overview](../README.md#assignments)
+# What changed
+
+You can find our changes in the [`webpacker`](~https://github.com/jfahrer/dockerizing_rails/tree/webpacker~) branch. [Compare it](~https://github.com/jfahrer/dockerizing_rails/compare/sidekiq...webpacker~) to the previous branch to see what changed.
+
+[Back to the overview](~../README.md#assignments~)

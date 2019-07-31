@@ -112,6 +112,7 @@ Check out the [`dockerized`](https://github.com/jfahrer/dockerizing_rails/tree/d
 There are more topics that didn't quite fit into the workshop.
 * Running the application as a different user
 * Advanced caching mechanisms for gems and libraries
+* Making use of environment variables to change the development environment
 * Integration testing with Capybara/Cypress
 * Utilizing CI/CD
 * Preparing your image for production
