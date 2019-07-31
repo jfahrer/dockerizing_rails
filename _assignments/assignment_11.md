@@ -20,32 +20,7 @@ Now run the `webpacker:install` rails rake task.
 docker-compose run --rm app bundle exec rails webpacker:install
 ```
 
-> **Note**: You should see an error message. This is expected!\_
-
-Looks like yarn is not installed! Let's install yarn by changing the `Dockerfile`
-
-```
-RUN apk add --update --no-cache \
-      bash \
-      build-base \
-      nodejs \
-      sqlite-dev \
-      tzdata \
-      postgresql-dev \
-      yarn
-```
-
-And now you'll need to rebuild the app container
-
-```
-docker-compose build app
-```
-
-We can rerun the `webpacker:install` task now that yarn is installed.
-
-```
-docker-compose run --rm app bundle exec rails webpacker:install
-```
+> **Note**: We have already added yarn to the Docker image – normally you would need to add yarn as a dependency prior to this step.
 
 If you run a `git status`, You'll see quite a few files were created and then `yarn install` was run.
 
@@ -90,7 +65,7 @@ Let’s try booting up the server again.
 docker-compose up app
 ```
 
-> **Note**: We’ll see another error. It’s because we removed the node*modules directory – now that we have a volume mounted let’s install those again.*
+> **Note**: We’ll see another error. It’s because we removed the node\_modules directory – now that we have a volume mounted let’s install those again.*
 
 ```
 docker-compose run --rm app yarn install
@@ -102,7 +77,7 @@ And let’s boot the server up again.
 docker-compose up app
 ```
 
-And also notice on your local disk, the `node_modules` directory exists but it is empty!
+And also notice on your local disk, the `node_modules` directory exists but now it is empty!
 
 Okay! We also need to revisit the `Dockerfile` to run `yarn install` so that if other engineers on your team pull the app they don’t run into the same yarn install error we just saw.
 
