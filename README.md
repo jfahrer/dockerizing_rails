@@ -103,6 +103,7 @@ Throughout the workshop you will complete the following assignments:
 * [Assignment 11 - Installing Webpacker](_assignments/assignment_11.md)
 * [Assignment 12 - Keeping things running with Spring](_assignments/assignment_12.md)
 * [Assignment 13 - Scripts To Rule Them All](_assignments/assignment_13.md)
+* [Assignment 14 - A seamless experience](_assignments/assignment_14.md)
 
 # TLDR - I just want to see a dockerized Rails app
 Check out the [`dockerized`](https://github.com/jfahrer/dockerizing_rails/tree/dockerized) branch and run `script/setup` to start the application.
@@ -112,6 +113,7 @@ Check out the [`dockerized`](https://github.com/jfahrer/dockerizing_rails/tree/d
 There are more topics that didn't quite fit into the workshop.
 * Running the application as a different user
 * Advanced caching mechanisms for gems and libraries
+* Making use of environment variables to change the development environment
 * Integration testing with Capybara/Cypress
 * Utilizing CI/CD
 * Preparing your image for production
