@@ -33,7 +33,7 @@ Rebuild the image with the changes in place:
 docker image build -t your_docker_id/rails_app:v1 .
 ```
 
-To make sure it works, let's make a small change to our source code. Simply add or change some text in `app/views/books/index.html.erb` and then rebuild the image. You should see that the `RUN bundle install` instruction is not executed but retrieved from the cache.
+To make sure it works, let's make a small change to our source code. Simply add or change some text in `app/views/todos/index.html.erb` and then rebuild the image. You should see that the `RUN bundle install` instruction is not executed but retrieved from the cache.
 
 ## Bonus
 * Try invalidating the build cache by adding an empty line to your `Gemfile` and then rebuild the image.

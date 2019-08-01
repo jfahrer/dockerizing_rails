@@ -52,7 +52,7 @@ Run options: include {:locations=>{"./spec/requests/todos_spec.rb"=>[123]}}
    27:
 ```
 
-If we execute the individual parts of the conditional, we can see that `@todo.update(update_params)` returns `true` but `@todo.completed_changed?` returns `false`. The `update_params` however contain `{"completed"=>"true"}` and we know the todo was not completed prior based on our test setup. So the issue must be withing the `@todo.completed_changed?`. If we inspect `@todo.changes` we get back an empty hash which indicates that there are no changes.
+If we execute the individual parts of the conditional, we can see that `@todo.update(update_params)` returns `true` but `@todo.completed_changed?` returns `false`. The `update_params` however contain `{"completed"=>"true"}` and we know the todo was not completed prior based on our test setup. So the issue must be within the `@todo.completed_changed?`. If we inspect `@todo.changes` we get back an empty hash which indicates that there are no changes.
 
 ```
 Run options: include {:locations=>{"./spec/requests/todos_spec.rb"=>[123]}}

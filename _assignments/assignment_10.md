@@ -36,7 +36,7 @@ There are still a few problems tho:
 
 To ensure a better experience we are going to use a concept we already learned about - a volume. We will use the volume to store a copy of our gems. Doing this allows us to skip building the image and just `bundle` as we would do with a non-dockerized ruby application.
 
-Let's a volume `gems` to our `app` service definition:
+Let's add a volume `gems` to our `app` service definition:
 ```yaml
     volumes:
       - ./:/usr/src/app:cached

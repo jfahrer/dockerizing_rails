@@ -10,11 +10,11 @@ Open the browser and try to navigate to http://localhost:3000. You should see th
 
 Back on you command line you should see the output of the Rails server.
 
-Go ahead and try to create a few books via the web interface.
+Go ahead and try to create a few to-dos via the web interface.
 
 Once you are done, you can terminate Rails and the container by pressing `Ctrl-C`.
 
-> **Note**: Accessing a service inside a container will NOT work of the service only listens on `localhost`. In other words, you have to make sure that the service listens on the outwards facing ethernet interfaces of the container. We told our Rails application to listen on `0.0.0.0` which is an alias for all interfaces.
+> **Note**: Accessing a service inside a container will NOT work if the service only listens on `localhost`. In other words, you have to make sure that the service listens on the outwards facing ethernet interfaces of the container. We told our Rails application to listen on `0.0.0.0` which is an alias for all interfaces.
 
 > **Note**: When using `-p 3000:3000` you instruct Docker to listen on all interfaces on your local machine. That means that your rails service will be accessible from other machines. Not what you want? Try `-p 127.0.0.1:3000:3000` instead to only listen on `localhost`.
 
@@ -48,7 +48,7 @@ CMD ["rails", "server", "-b", "0.0.0.0"]
 
 New here is the `EXPOSE` instructions. `EXPOSE` adds metadata to the image that tells Docker that the service provided by this image will listen on port 3000. This is not required, but it allows other users to properly run the container and publish the correct port.
 
-We also changed the `CMD` instruction. The `rails server` with the required arguments is not the defeault command that will be executed when a container based on the image starts.
+We also changed the `CMD` instruction. The `rails server` with the required arguments is not the default command that will be executed when a container based on the image starts.
 
 With the changes in place, we have to rebuild our image:
 ```
