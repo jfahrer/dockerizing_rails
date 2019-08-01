@@ -10,6 +10,11 @@ Tasks to complete solution:
 - Add yarn via `apk` in the docker image
 - Mount a volume for the `node_modules` directory to `/usr/src/app/node_modules`
 - Install webpacker by running the rake task: `webpacker:install`
+- Add the packs to the application.html.erb layout:
+```erb
+    <%= stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
 - Navigate to localhost:3000 and open your web console.
 - If you see "Hello World from Webpacker!", it worked!
 - If you got this far, there are more exercises in the "[Using Webpacker](#using-webpacker)" section
